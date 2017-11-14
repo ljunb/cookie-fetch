@@ -4,22 +4,35 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
   View
 } from 'react-native';
+import CFetch, {CachePolicy} from 'cookie-fetch';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
+  'Cmd+D or shake for dev menu',
   android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+  'Shake or press menu button for dev menu',
 });
 
 export default class App extends Component<{}> {
+
+  async componentDidMount() {
+    const url = 'http://food.boohee.com/fb/v1/categories/list';
+    const options = {cache: CachePolicy.NetworkFirst};
+    try {
+      const {result, isCache} = await CFetch.get(url, options);
+      alert(`response: ${result} \n isCache: ${isCache}`)
+    } catch (error) {
+      alert('error' + error)
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
