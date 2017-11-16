@@ -42,3 +42,10 @@ Name            | Description
 NetworkFirst    | 优先请求网络，请求失败则读取缓存，如无缓存，返回`null`
 ForceNetwork    | 强制请求网络，请求失败返回`null`
 ForceCache      | 强制读取缓存，读取失败返回`null`
+
+## 方法
+Name            | Description
+----------------  | -----------
+get    | `GET`请求方法，使用方式与`fetch`一致
+clearHTTPCacheWithURL  | 基于某个请求`URL`清除`HTTP`缓存，接受的参数与请求的`URL`需匹配一致，包括`query`部分
+clearAllHTTPCache      | 清除所有的`HTTP`缓存
