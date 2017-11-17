@@ -23,12 +23,12 @@ import CFetch, { CachePolicy } from 'cookie-fetch';
 
 async componentDidMount() {
   const url = 'http://food.boohee.com/fb/v1/categories/list';
-  const options = {cache: CachePolicy.NetworkFirst};
+  const options = {cache: CachePolicy.NetworkFirst, timeout: 0.1};
   try {
     const {result, isCache} = await CFetch.get(url, options);
     alert(`response: ${result} \n isCache: ${isCache}`)
   } catch (error) {
-    alert('error' + error)
+    alert(`error: ${error}`)
   }
 }
   
@@ -46,7 +46,7 @@ ForceCache      | 强制读取缓存，读取失败返回`null`
 ## 方法
 Name            | Description
 ----------------  | -----------
-get    | `GET`请求方法，使用方式与`fetch`一致
-post    | `POST`请求方法，使用方式与`fetch`一致
+get    | `GET`请求方法，使用方式与`fetch`一致，支持在`options`中设置`timeout`
+post    | `POST`请求方法，使用方式与`fetch`一致，支持在`options`中设置`timeout`
 clearHTTPCacheWithURL  | 基于某个请求`URL`清除`HTTP`缓存，接受的参数与请求的`URL`需匹配一致，包括`query`部分
 clearAllHTTPCache      | 清除所有的`HTTP`缓存

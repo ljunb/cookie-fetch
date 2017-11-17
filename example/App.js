@@ -24,12 +24,12 @@ export default class App extends Component<{}> {
 
   async componentDidMount() {
     const url = 'http://food.boohee.com/fb/v1/categories/list';
-    const options = {cache: CachePolicy.NetworkFirst};
+    const options = {cache: CachePolicy.NetworkFirst, timeout: 0.1};
     try {
       const {result, isCache} = await CFetch.get(url, options);
       alert(`response: ${result} \n isCache: ${isCache}`)
     } catch (error) {
-      alert('error' + error)
+      alert(`error: ${error}`)
     }
   }
 
